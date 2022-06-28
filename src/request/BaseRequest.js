@@ -1,5 +1,5 @@
 import Validator from 'validatorjs'
-import { unprocessableEntity } from '../Helpers/Errors.js'
+import { unprocessableEntity } from '../helpers/Errors.js'
 
 class BaseRequest {
 

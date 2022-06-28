@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken'
 import AuthRepository from '../repository/AuthRepository.js'
 import { setupEnvironment } from '../config/environment.js'
-import { unprocessableEntity } from '../Helpers/Errors.js'
+import { unprocessableEntity } from '../helpers/Errors.js'
 
 setupEnvironment(process.env.NODE_ENV)
 
