@@ -1,11 +1,11 @@
 import jwt from 'jsonwebtoken'
-import UserRepository from '../repository/UserRepository.js'
+import AuthRepository from '../repository/AuthRepository.js'
 import { setupEnvironment } from '../config/environment.js'
 
 setupEnvironment(process.env.NODE_ENV)
 
 const authenticate = async (req, res) => {
-  const user = await UserRepository.login(req.body.email, req.body.password)
+  const user = await AuthRepository.login(req.body.email, req.body.password)
   if (user === null) {
     res.status(403).send('forbidden')
   }
@@ -13,7 +13,8 @@ const authenticate = async (req, res) => {
   // set current user
   res.send({
     ...user,
-    token: generateAccessToken(user),
+    access_token: generateAccessToken(user),
+    refresh_token: generateRefreshToken(user),
   })
 }
 
@@ -38,8 +39,11 @@ const generateAccessToken = (user) => {
   return jwt.sign(user, process.env.TOKEN_SECRET, { expiresIn: '1800s' })
 }
 
+const generateRefreshToken = (user) => {
+  return jwt.sign(user, process.env.TOKEN_SECRET, { expiresIn: '1d' })
+}
+
 export {
   authenticate,
   authenticateToken,
-  generateAccessToken,
 }
