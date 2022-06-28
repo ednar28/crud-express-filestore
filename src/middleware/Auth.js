@@ -70,4 +70,6 @@ export {
   refreshToken,
   authenticateToken,
   authenticateRefreshToken,
+  generateAccessToken,
+  generateRefreshToken,
 }

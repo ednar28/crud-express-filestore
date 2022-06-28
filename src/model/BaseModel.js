@@ -23,8 +23,8 @@ class BaseModel {
   async get () {
     try {
       let data = []
-      const collection = await this.collection.get()
-      collection.forEach((doc) => {
+      const snapshot = await this.collection.get()
+      snapshot.forEach((doc) => {
         data.push({ id: doc.id, ...doc.data() })
       })
 
@@ -42,10 +42,10 @@ class BaseModel {
    */
   async create (data = {}) {
     try {
-      const collection = this.collection.doc()
-      await collection.set(data)
+      const snapshot = this.collection.doc()
+      await snapshot.set(data)
 
-      return collection
+      return snapshot
     } catch (e) {
       console.log(e)
     }
@@ -123,6 +123,19 @@ class BaseModel {
    */
   async delete (id) {
     return await this.collection.doc(id).delete()
+  }
+
+  /**
+   * Delete all data on table
+   *
+   * @return void
+   */
+  async deleteAll () {
+    const snapshot = await this.collection.get()
+
+    snapshot.forEach(user => {
+      this.delete(user.id)
+    })
   }
 }
 
