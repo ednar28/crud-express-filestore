@@ -6,7 +6,7 @@ import dotenv from 'dotenv'
  * @param {String} env
  * @public
  */
- export function setupEnvironment(env) {
+export function setupEnvironment (env) {
   dotenv.config({
     allowEmptyValues: true,
     path: getPath(env),
@@ -23,8 +23,8 @@ import dotenv from 'dotenv'
  * @returns {String}
  * @private
  */
-function getPath(mode) {
-  return ".env." + mode
+function getPath (mode) {
+  return '.env.' + mode
 }
 
 export default dotenv
