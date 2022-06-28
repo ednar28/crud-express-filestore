@@ -2,7 +2,7 @@ import express from 'express'
 import bodyParser from 'body-parser'
 
 // register routes
-import router from './src/routes/index.js'
+import router from './src/routes/Index.js'
 
 const app = express()
 const port = 3000

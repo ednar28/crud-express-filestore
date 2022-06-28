@@ -30,6 +30,10 @@ class AuthRepository {
     const user = await User.create(data)
     return await User.find(user.id)
   }
+
+  async getUserById (id) {
+    return User.find(id)
+  }
 }
 
 export default new AuthRepository()
