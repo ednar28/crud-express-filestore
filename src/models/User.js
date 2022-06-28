@@ -6,7 +6,7 @@ class User extends BaseModel {
   }
 
   getUserByEmail (email) {
-    const user = this.collection.where('name', '==', email).get()
+    const user = this.collection.where('email', '==', email).get()
     return user
   }
 }
